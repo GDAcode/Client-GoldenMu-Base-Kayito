@@ -84,5 +84,8 @@ private:
 
 	static void FixPigeons();
 };
-
 extern CPatchs gPatchs;
+void PatchFPSLimit();
+//extern float gDeltaTime;
+//extern void UpdateDeltaTime();
+//extern LARGE_INTEGER gFrequency;

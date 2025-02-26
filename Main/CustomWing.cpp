@@ -789,26 +789,23 @@ _declspec(naked) void CCustomWing::CustomWingChangeCharacterExt()
 		Mov ViewportAddress, Esi;
 	}
 
-	// Verifica se o personagem está equipando uma asa personalizada
 	if ((Equipment[8] & 7) != 0)
 	{
 		lpInfo = gCustomWing.GetInfo((Equipment[8] & 7) - 1);
 
 		if (lpInfo != NULL)
 		{
-			// Atualiza a skin da asa no viewport
 			*(WORD*)(ViewportAddress + 0x2A0) = lpInfo->ItemIndex + ITEM_BASE_MODEL;
 		}
 		else
 		{
-			// Remove a skin da asa (exibe a asa padrão)
 			*(WORD*)(ViewportAddress + 0x2A0) = -1;
+
 			*(BYTE*)(ViewportAddress + 0x2A3) = 0;
 		}
 	}
 	else
 	{
-		// Asa padrão
 		*(WORD*)(ViewportAddress + 0x2A0) = ((Equipment[4] >> 2) & 3) + GET_ITEM_MODEL(12, 0);
 	}
 
@@ -818,45 +815,3 @@ _declspec(naked) void CCustomWing::CustomWingChangeCharacterExt()
 		Jmp[jmpBack];
 	}
 }
-
-//_declspec(naked) void CCustomWing::CustomWingChangeCharacterExt()
-//{
-//	static DWORD jmpBack = 0x0045C988;
-//
-//	static BYTE* Equipment;
-//	static DWORD ViewportAddress;
-//	static CUSTOM_WING_INFO* lpInfo;
-//
-//	_asm
-//	{
-//		Pushad;
-//		Mov Equipment, Edi;
-//		Mov ViewportAddress, Esi;
-//	}
-//
-//	if ((Equipment[8] & 7) != 0)
-//	{
-//		lpInfo = gCustomWing.GetInfo((Equipment[8] & 7) - 1);
-//
-//		if (lpInfo != NULL)
-//		{
-//			*(WORD*)(ViewportAddress + 0x2A0) = lpInfo->ItemIndex + ITEM_BASE_MODEL;
-//		}
-//		else
-//		{
-//			*(WORD*)(ViewportAddress + 0x2A0) = -1;
-//
-//			*(BYTE*)(ViewportAddress + 0x2A3) = 0;
-//		}
-//	}
-//	else
-//	{
-//		*(WORD*)(ViewportAddress + 0x2A0) = ((Equipment[4] >> 2) & 3) + GET_ITEM_MODEL(12, 0);
-//	}
-//
-//	_asm
-//	{
-//		Popad;
-//		Jmp[jmpBack];
-//	}
-//}

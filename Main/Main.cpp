@@ -122,8 +122,21 @@ extern "C" _declspec(dllexport) void _cdecl EntryProc()
 	gProtect.CheckClientFile();
 
 	gProtect.CheckPluginFile();
+
+
 }
 
+//float gDeltaTime = 0.0f;
+//LARGE_INTEGER gFrequency, gLastTime;
+//
+//void UpdateDeltaTime()
+//{
+//	LARGE_INTEGER currentTime;
+//	QueryPerformanceCounter(&currentTime);
+//	gDeltaTime = (float)(currentTime.QuadPart - gLastTime.QuadPart) / gFrequency.QuadPart;
+//	gLastTime = currentTime;
+//
+//}
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 {
 	switch (ul_reason_for_call)
@@ -154,6 +167,9 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
 			break;
 		}
 	}
-
+	//if (ul_reason_for_call == DLL_PROCESS_ATTACH)
+		//QueryPerformanceFrequency(&gFrequency);
+		//QueryPerformanceCounter(&gLastTime);
+		//PatchFPSLimit();
 	return 1;
 }

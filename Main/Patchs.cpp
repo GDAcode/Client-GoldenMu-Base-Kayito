@@ -2209,6 +2209,36 @@ EXIT:
 	}
 }
 
+//void PatchFPSLimit()
+//{
+//	DWORD offset = 0x00526A57;
+//	BYTE newValue = 0x1E; //30FPS
+//	//BYTE newValue = 0x0F; //60FPS
+//	//BYTE newValue = 0x78; //120fps
+//
+//	DWORD oldProtect;
+//	VirtualProtect((LPVOID)offset, 1, PAGE_EXECUTE_READWRITE, &oldProtect);
+//	*(BYTE*)offset = newValue;
+//	VirtualProtect((LPVOID)offset, 1, oldProtect, &oldProtect);
+//}
+//void CPatchs::CalcFPS()
+//{
+//    float dif = (float)clock() - WorldTime;
+//    float measuredDelta = ((dif) ? dif : 0.1f) / CLOCKS_PER_SEC;
+//
+//    // Fator de correção: se a medição for menor que 1/24, aumenta o delta para simular 24 FPS
+//    float baseDelta = 1.0f / 24.0f;
+//    float correctionFactor = baseDelta / measuredDelta;
+//
+//    // Aplica o fator: se estiver rodando a 60 FPS, measuredDelta ? 0.01667, então correctionFactor ? 2.5,
+//    // e o DeltaT efetivo será 0.01667 * 2.5 = 0.04167 (como desejado para 24 FPS).
+//    DeltaT = measuredDelta * correctionFactor;
+//
+//    FPS = CLOCKS_PER_SEC / ((dif) ? dif : 0.1f);
+//    WorldTime = (float)clock();
+//}
+
+
 void CPatchs::CalcFPS()
 {
 	float dif = (float)clock() - WorldTime;
@@ -2253,3 +2283,4 @@ _declspec(naked) void CPatchs::FixPigeons()
 		Jmp[jmpBack];
 	}
 }
+

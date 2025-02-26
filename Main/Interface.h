@@ -25,7 +25,7 @@ struct InterfaceObject
 
 enum ObjectID
 {
-
+	
 };
 
 class Interface

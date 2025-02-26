@@ -7,6 +7,7 @@
 #include "Protect.h"
 #include "SkyDome.h"
 #include "Window.h"
+#include "Patchs.h"
 
 Interface gInterface;
 
@@ -37,6 +38,7 @@ void Interface::Init()
 	SetCompleteHook(0xE8, 0x004BD300, &this->RenderLeftDragon);
 
 	SetCompleteHook(0xE8, 0x004BD332, &this->RenderRightDragon);
+
 }
 
 void Interface::RenderLogInScene(HDC Hdc)
@@ -44,6 +46,7 @@ void Interface::RenderLogInScene(HDC Hdc)
 	gWindow.ChangeWindowText();
 
 	((void(__cdecl*)(HDC Hdc)) 0x00521630)(Hdc);
+
 }
 
 void Interface::RenderCharacterScene(HDC Hdc)
@@ -59,6 +62,33 @@ void Interface::RenderMainScene()
 
 	((void(__cdecl*)()) 0x00525A00)();
 }
+
+	//{
+	//	// Variável estática para armazenar o tempo do último frame
+	//	static LARGE_INTEGER lastFrameTime = { 0 };
+	//	LARGE_INTEGER currentTime;
+	//	QueryPerformanceCounter(&currentTime);
+	//
+	//	if (lastFrameTime.QuadPart != 0)
+	//	{
+	//		// Calcula o tempo decorrido em segundos
+	//		double elapsed = (double)(currentTime.QuadPart - lastFrameTime.QuadPart) / gFrequency.QuadPart;
+	//		double targetFrameTime = 1.0 / 60.0; // 60 FPS -> ~16,67ms por frame
+	//
+	//		if (elapsed < targetFrameTime)
+	//		{
+	//			// Calcula o tempo que falta (em milissegundos) e dorme por esse período
+	//			DWORD sleepTime = (DWORD)((targetFrameTime - elapsed) * 1000.0);
+	//			if (sleepTime > 0)
+	//			{
+	//				Sleep(sleepTime);
+	//				// Após o Sleep, atualiza currentTime novamente
+	//				QueryPerformanceCounter(&currentTime);
+	//			}
+	//		}
+	//	}
+	//	lastFrameTime = currentTime;
+	//}
 
 void Interface::LoadImages()
 {
@@ -78,6 +108,7 @@ void Interface::MyUpdateWindowsMouse()
 	gMoveList.UpdateMouse();
 
 	gEventTimer.UpdateMouse();
+
 }
 
 void Interface::MyRenderWindows()

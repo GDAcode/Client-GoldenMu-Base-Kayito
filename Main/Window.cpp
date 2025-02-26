@@ -462,8 +462,8 @@ void CWindow::ChangeWindowText()
 	{
 		STRUCT_DECRYPT;
 
-		//sprintf_s(this->m_WindowName, sizeof(this->m_WindowName), "%s || Resets: %d || GrandResets: %d || Level: %d || PING: %u ms || FPS: %.0f", (char*)(CharacterAttribute + 0x00), gPrintPlayer.ViewReset, gPrintPlayer.ViewGrandReset, *(WORD*)(CharacterAttribute + 0x0E), gPing.m_Ping, FPS);
-		sprintf_s(this->m_WindowName, sizeof(this->m_WindowName), "Golden Mu 97x || %s || Resets: %d || Level: %d || PING: %u ms || FPS: %.0f", (char*)(CharacterAttribute + 0x00), gPrintPlayer.ViewReset,*(WORD*)(CharacterAttribute + 0x0E), gPing.m_Ping, FPS);
+		sprintf_s(this->m_WindowName, sizeof(this->m_WindowName), "%s || Resets: %d || Level: %d || PING: %u ms || FPS: %.0f", (char*)(CharacterAttribute + 0x00), gPrintPlayer.ViewReset, *(WORD*)(CharacterAttribute + 0x0E), gPing.m_Ping, FPS);
+
 		STRUCT_ENCRYPT;
 	}
 
