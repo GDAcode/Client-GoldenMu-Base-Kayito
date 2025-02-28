@@ -41,11 +41,15 @@ void Interface::Init()
 
 }
 
+
 void Interface::RenderLogInScene(HDC Hdc)
 {
 	gWindow.ChangeWindowText();
 
 	((void(__cdecl*)(HDC Hdc)) 0x00521630)(Hdc);
+
+	gWindow.ChangeWindowText();
+	((void(__cdecl*)(HDC))0x00521630)(Hdc);
 
 }
 
@@ -213,3 +217,4 @@ bool Interface::IsWorkZone(short ObjectID)
 
 	return true;
 }
+
